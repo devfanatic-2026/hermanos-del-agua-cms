@@ -40,6 +40,13 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install
+      - name: Verify Cloudflare token
+        run: |
+          if [ -z "${CLOUDFLARE_API_TOKEN:-}" ]; then
+            echo "::error::El secret CLOUDFLARE_API_TOKEN no está definido. Añádelo en Settings → Secrets and variables → Actions del repositorio."
+            exit 1
+          fi
+          echo "Token configurado (longitud: ${#CLOUDFLARE_API_TOKEN})."
       - name: Install Wrangler
         run: npm install -g wrangler@4.93.0
       - name: Build and deploy the site
