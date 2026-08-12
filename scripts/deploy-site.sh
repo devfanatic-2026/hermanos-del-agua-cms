@@ -19,6 +19,14 @@ echo "Ensuring the Pages project ${PROJECT_NAME} exists..."
 wrangler pages project create "${PROJECT_NAME}" --production-branch main > /dev/null 2>&1 || true
 
 echo "Deploying to Cloudflare Pages (${PROJECT_NAME})..."
-wrangler pages deploy "dist-site" --project-name "${PROJECT_NAME}" --commit-dirty=true
+
+# In CI the checkout is detached, so allow the branch to be passed explicitly
+BRANCH_FLAG=''
+
+if [ -n "${PAGES_BRANCH:-}" ]; then
+  BRANCH_FLAG="--branch ${PAGES_BRANCH}"
+fi
+
+wrangler pages deploy "dist-site" --project-name "${PROJECT_NAME}" --commit-dirty=true ${BRANCH_FLAG}
 
 echo "Done. Blog: https://${PROJECT_NAME}.pages.dev/ | Admin panel: https://${PROJECT_NAME}.pages.dev/admin/"

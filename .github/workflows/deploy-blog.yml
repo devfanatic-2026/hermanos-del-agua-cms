@@ -22,6 +22,10 @@ jobs:
   deploy:
     name: Build and deploy
     runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: a3a5911ecafc53a38970c6bf2bfba0d4
+      PAGES_BRANCH: main
     steps:
       - name: Checkout the branch
         uses: actions/checkout@v7.0.1
@@ -36,12 +40,7 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install
-      - name: Build the site
-        run: bash scripts/build-site.sh
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v4
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: a3a5911ecafc53a38970c6bf2bfba0d4
-          wranglerVersion: '4.93.0'
-          command: pages deploy dist-site --project-name hermanos-del-agua-cms --branch main --commit-dirty=true
+      - name: Install Wrangler
+        run: npm install -g wrangler@4.93.0
+      - name: Build and deploy the site
+        run: bash scripts/deploy-site.sh
