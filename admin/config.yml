@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+# Configuración del CMS autohospedado. Los editores inician sesión con su cuenta de
+# GitHub (OAuth) y los artículos se guardan en `content/posts/` de este repositorio.
+
+backend:
+  name: github
+  repo: devfanatic-2026/hermanos-del-agua-cms
+  branch: main
+  # URL del worker Sveltia CMS Authenticator
+  base_url: https://sveltia-cms-auth.devfanatic.workers.dev
+
+# Imágenes y archivos subidos desde el editor
+media_folder: content/media
+public_folder: /content/media
+
+collections:
+  - name: posts
+    label: Artículos
+    label_singular: Artículo
+    description: Artículos publicados en la web de Hermanos del Agua
+    folder: content/posts
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    summary: '{{title}} — {{date}}'
+    fields:
+      - { name: title, label: Título, widget: string }
+      - { name: date, label: Fecha, widget: datetime, type: datetime, default: '{{now}}' }
+      - { name: description, label: Descripción breve, widget: text, required: false }
+      - { name: body, label: Contenido, widget: richtext }

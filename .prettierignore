@@ -2,3 +2,6 @@ node_modules
 /package
 /.vite
 pnpm-lock.yaml
+content/**
+scripts/build-site.sh
+scripts/deploy-site.sh

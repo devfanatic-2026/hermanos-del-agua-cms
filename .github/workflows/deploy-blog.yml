@@ -1,0 +1,47 @@
+name: Deploy blog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'admin/**'
+      - 'content/**'
+      - 'scripts/**'
+      - 'src/**'
+      - 'vite.config.js'
+      - 'svelte.config.js'
+      - '.github/workflows/deploy-blog.yml'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+
+concurrency:
+  group: deploy-blog
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the branch
+        uses: actions/checkout@v7.0.1
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6.0.9
+        with:
+          version: latest
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build the site
+        run: bash scripts/build-site.sh
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: a3a5911ecafc53a38970c6bf2bfba0d4
+          wranglerVersion: '4.93.0'
+          command: pages deploy dist-site --project-name hermanos-del-agua-cms --branch main --commit-dirty=true

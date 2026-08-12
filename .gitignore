@@ -1,6 +1,8 @@
 /coverage
 /package
 /.vite
+/dist-site
+/.wrangler
 node_modules
 *.log
 *.local

@@ -15,6 +15,8 @@ files:
 useGitignore: true
 ignorePaths:
   - pnpm-lock.yaml
+  - content/**
+  - scripts/build-blog.js
   - data/**/*.json
   - package/**
   - src/**/*.test.js
@@ -22,9 +24,17 @@ ignorePaths:
   - '!src/lib/locales/en-*.yaml'
 words:
   - analyzing
+  - agua
+  - Agua
   - appinstalled
+  - archivos
+  - Artículo
+  - Artículos
+  - artículos
   - astrolicious
   - astros
+  - automáticamente
+  - autohospedado
   - Backblaze
   - backlink
   - backlinks
@@ -33,31 +43,44 @@ words:
   - BYOK
   - camelcase
   - Cloudinary
+  - Configuración
+  - Contenido
   - cmaps
   - Codeberg
   - cooldown
+  - cuenta
   - CVEs
   - danurbanowicz
   - Decap
   - DeepL
   - deepmerge
   - DeepSeek
+  - desde
+  - Descripción
+  - devfanatic
   - dialogs
   - dompurify
   - embeddable
+  - editores
   - esbuild
+  - estilos
   - exif
   - exifr
+  - Fecha
   - FedRAMP
   - Flavored
   - Forgejo
   - frontmatter
   - GHSA
   - Ghsas
+  - gestión
   - gitdir
   - Gitea
+  - Hermanos
+  - hermanos
   - goldmark
   - groupable
+  - guardan
   - hotlinking
   - hugolify
   - husenunicorn
@@ -65,8 +88,10 @@ words:
   - iccs
   - IIFE
   - indexeddb
+  - Imágenes
   - infobar
   - infobars
+  - inician
   - jfif
   - jsdoc
   - jSquash
@@ -80,9 +105,11 @@ words:
   - mdwn
   - messageformat
   - mkdn
+  - monta
   - Mtei
   - Mullvad
   - notranslate
+  - nvmrc
   - onkeydowncapture
   - onpastecapture
   - onwheelcapture
@@ -105,15 +132,20 @@ words:
   - programmatically
   - proxified
   - proxify
+  - publicados
   - qrcode
   - Ragdoll
   - rearchitect
+  - Redirigiendo
   - rebranded
   - reimagined
+  - repositorio
+  - requiere
   - rescanning
   - Roadmap
   - safesearch
   - sandboxing
+  - sesión
   - Scaleway
   - sebousan
   - Shiki
@@ -127,10 +159,12 @@ words:
   - strikethrough
   - stylelint
   - subfolders
+  - subidos
   - Supabase
   - sveltejs
   - Sveltia
   - templatized
+  - Título
   - Typecheck
   - unadded
   - unflatten
@@ -143,6 +177,7 @@ words:
   - unproxify
   - unrs
   - unsubscribers
+  - vars
   - Uploadcare
   - videoseries
   - Vite
